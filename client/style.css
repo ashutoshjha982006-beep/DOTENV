@@ -1,5 +1,8 @@
 body{
     background-image: url("background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 header{
     display: flex;
@@ -57,5 +60,5 @@ nav{
 button:hover {
     background-color: #00D9FF;
     color: #001226;
-    box-shadow: 0 0 18px #00D9FF;
+    box-shadow: 0 0 14px #00D9FF;
 }
