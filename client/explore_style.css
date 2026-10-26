@@ -1,0 +1,49 @@
+body{
+    background-image: url("background.png");
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 60px;
+}
+.logo img{
+    width:80px;
+    height: auto;
+    display: flex;
+
+}
+.para-search{
+    text-align: center;
+    color: #B8C4D9;
+}
+input{
+    align-items: center;
+    padding: 10px;
+    width: 700px;
+    height: 60px;
+    border:1px solid #42BFFF;
+    border-radius: 10px;
+    margin-left: 31.6%;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.search-bar{
+    display: flex;
+}
+.search-bar button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+}
+.search-bar button img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+.search-bar button img:hover{
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px #42BFFF);
+}

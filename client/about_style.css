@@ -1,0 +1,48 @@
+body{
+    background-image: url("background.png");
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 60px;
+}
+.logo img{
+    width:80px;
+    height: auto;
+    display: flex;
+
+}
+.para{
+    text-align: center;
+    color: #B8C4D9;
+}
+.para hr{
+    width: 99%;
+    margin: 30px auto;
+    border: none;
+    height: 1px;
+    background: #42BFFF;
+}
+.why{
+    color: #B8C4D9;
+    margin-left: 20%;
+    margin-top: 6%;
+}
+.why p{
+    font-size: 25px;
+}
+.box{
+    display: flex;
+    gap: 450px;
+    margin-left: 20%;
+}
+.visualize,.understand{
+    display:block;
+    color:#B8C4D9 ;
+    background-color: #42BFFF;
+    height: 60px;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+}
