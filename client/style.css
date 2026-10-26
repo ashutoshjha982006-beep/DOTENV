@@ -1,8 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body{
     background-image: url("background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    min-height: 100vh;       
+    background-attachment: fixed; 
 }
 header{
     display: flex;
@@ -60,4 +68,11 @@ button:hover {
     background-color: #00D9FF;
     color: #001226;
     box-shadow: 0 0 14px #00D9FF;
+}
+.text_img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
