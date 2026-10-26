@@ -12,7 +12,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         const response = await fetch(
-            "http://localhost:3000/api/v1/repositories/analyze",
+            "http://localhost:8000/api/v1/repos/analyze",
             {
                 method: "POST",
                 headers: {
