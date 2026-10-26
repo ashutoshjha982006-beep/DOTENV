@@ -1,4 +1,61 @@
+body{
+    background-image: url("background.png");
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 60px;
+}
 .logo img{
     width:80px;
     height: auto;
+    display: flex;
+
+}
+nav{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.text_img{
+    display: flex;
+    align-items: center;
+    gap: 460px;
+}
+.para{
+    margin-left: 180px;
+    margin-top: 150px;
+    text-align: left;
+    color: #B8C4D9;
+}
+.para a{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.Image img{
+    width: 300px;
+    height: 200px;
+    float: right;
+    margin-right:60px;
+    position: relative;
+    top:120px;
+}
+.Button1 ,.Button2{
+    width: 12%;
+    padding: 12px;
+    border-radius: 12px;
+    margin-left: 180px;
+    color: #087CF0;
+    background-color:#101D3A;
+    border:1px solid #42BFFF;
+
+}
+.Button2{
+    margin-left: 68px;
+}
+button:hover {
+    background-color: #00D9FF;
+    color: #001226;
+    box-shadow: 0 0 18px #00D9FF;
 }
