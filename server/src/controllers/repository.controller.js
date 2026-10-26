@@ -1,8 +1,44 @@
+import axios from "axios";
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/ApiError.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import { Repository } from "../models/repository.model.js"
 import { fetchRepoTreeAndNodes } from "../utils/github.services.js"
+
+const enrichNodesWithML = async (nodes) => {
+    try {
+        const payload = nodes.map(n => ({
+            path: n.path,
+            linesOfCode: Number(n.linesOfCode) || 0,
+            fanIn: Number(n.fanIn) || 0,
+            fanOut: Number(n.fanOut) || 0
+        }));
+
+        const response = await axios.post("http://127.0.0.1:8001/predict/batch", payload, {
+            timeout: 5000
+        });
+
+        const predictions = new Map(response.data.map(p => [p.path, p]));
+
+        return nodes.map(node => {
+            const pred = predictions.get(node.path);
+            return {
+                ...node,
+                riskScore: pred ? pred.riskScore : 10.0,
+                riskLevel: pred ? pred.riskLevel : "LOW",
+                isGodFile: pred ? pred.isGodFile : false
+            };
+        });
+    } catch (error) {
+        console.warn("[ML Service Fallback] FastAPI service unreachable:", error.message);
+        return nodes.map(node => ({
+            ...node,
+            riskScore: 15.0,
+            riskLevel: "LOW",
+            isGodFile: false
+        }));
+    }
+};
 
 const analyzeRepository = asyncHandler(async (req,res) => {
     const {repoUrl}=req.body
@@ -26,26 +62,7 @@ const analyzeRepository = asyncHandler(async (req,res) => {
         throw new ApiError(404,"No supported JS/TS files found in this repository")
     }
 
-    const enrichedNodes=nodes.map((node) => {
-        const score=Math.min(
-            100,
-            Math.round(node.linesOfCode*0.3+node.fanIn*4+node.fanOut*3)
-        )
-
-        let level="LOW";
-
-        if(score>75)level="CRITICAL";
-        else if(score>50)level="HIGH";
-        else if(score>25)level="MODERATE"
-
-        return {
-            ...node,
-            riskScore:score,
-            riskLevel:level,
-            isGodFile:score>75
-        }
-
-    })
+    const enrichedNodes=await enrichNodesWithML(nodes);
 
     const totalRisk=enrichedNodes.reduce((acc,curr)=>acc+curr.riskScore,0);
     const overallHealthScore=Math.max(0,Math.round(100-totalRisk/enrichedNodes.length));
@@ -81,5 +98,7 @@ const getAllRepositories = asyncHandler(async (req, res) => {
     const repos = await Repository.find().select("-nodes -links").sort({ createdAt: -1 });
     return res.status(200).json(new ApiResponse(200, repos, "History fetched successfully"));
 });
+
+
 
 export { analyzeRepository, getRepositoryById, getAllRepositories };
