@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="explore_style.css">
-    <title>Explore</title>
+    <title>Astral Cartographer</title>
 </head>
 <body>
       <header>
@@ -24,11 +24,15 @@
         <h4>Discover repositories, understand architecture,find your path.</h4>
     </div>
 
-    <div class="search-bar">
-        <input type="search" placeholder="Paste your repo link here.....">
-        <button class="btn"><img src="search.png" alt="Describe"></button>
-    </div>
 
+    <form class="search-bar" id="repoForm">
+        <input type="url" id="repoUrl" placeholder="Paste your repo link here....." required>
+        <button type="submit" class="btn"><img src="search.png" alt="Search"></button>
+    </form>
+
+    <p id="message"></p>
+
+    <script src="explore.js"></script>
     </div>
 </body>
 </html>

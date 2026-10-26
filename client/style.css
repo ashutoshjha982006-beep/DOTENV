@@ -11,6 +11,7 @@ body{
     background-repeat: no-repeat;
     min-height: 100vh;       
     background-attachment: fixed; 
+    overflow-y: hidden;
 }
 header{
     display: flex;
@@ -69,10 +70,10 @@ button:hover {
     color: #001226;
     box-shadow: 0 0 14px #00D9FF;
 }
-.text_img {
+/* .text_img {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-}
+} */
