@@ -37,12 +37,20 @@ header{
     gap: 450px;
     margin-left: 20%;
 }
-.visualize,.understand{
-    display:block;
-    color:#B8C4D9 ;
-    background-color: #42BFFF;
+.visualize,.understand {
+    display: block;
+    color: #DCEBFF;
+    background-color: #071A38;
     height: 60px;
     width: 200px;
     text-align: center;
     padding: 5px;
+    border: 1px solid #00D9FF;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.visualize:hover, .understand:hover {
+    background-color: #0B2450;
+    box-shadow: 0 0 18px rgba(0, 217, 255, 0.3);
 }
